@@ -6,7 +6,7 @@ function Header() {
     return (
         <div className="header">
             <img src={ logo } alt="Logo" />
-            <h1>Vanilla Js <span>Todo List</span></h1>
+            <h1>React Js <span>Todo List</span></h1>
         </div>
     );
 }

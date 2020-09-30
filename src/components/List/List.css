@@ -1,0 +1,16 @@
+.list {
+    margin: 0 -1rem;
+}
+.list ul {
+    overflow-x: auto;
+    overflow-x: hidden;
+    max-height: 50vh;
+    border-top: solid 1px #ddd;
+    border-bottom: solid 1px #ddd;
+}
+
+@media (max-width: 530px) {
+    .list ul {
+        max-height: none;
+    }
+}

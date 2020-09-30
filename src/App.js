@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Forkme from "./components/Forkme";
+import Header from "./components/Header";
+import Create from "./components/Create";
+import Status from "./components/Status";
+import List from "./components/List/List";
+import Empty from "./components/Empty";
+import Filter from "./components/Filter";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="root">
+            <Forkme />
+            <div className="todo-app">
+                <Header />
+                <Create />
+                <Status />
+                <List />
+                <Empty />
+                <Filter />
+            </div>
+        </div>
+    );
 }
 
 export default App;

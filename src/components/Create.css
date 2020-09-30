@@ -1,0 +1,38 @@
+.create {
+    margin-right: -1rem;
+    margin-left: -1rem;
+    margin-bottom: 1rem;
+    background: transparent;
+}
+.create .btn-add {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    background-color: #008080 !important;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.create .btn-add i {
+    font-size: 1.5rem;
+}
+.create .btn-add:hover {
+    background-color: #105e5e !important;
+}
+.create .btn-add:active,
+.create .btn-add:focus {
+    background-color: #0c4e4e !important;
+}
+.create > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 11px;
+}
+.create input {
+    border-radius: 0.5rem;
+    margin-right: 11px;
+}

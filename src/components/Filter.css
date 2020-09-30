@@ -1,0 +1,49 @@
+.filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+}
+.filter input {
+    display: inline-block;
+    width: auto;
+    border-radius: 0.3rem;
+    margin-right: 11px;
+    height: 20px;
+}
+.filter ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.filter ul li {
+    margin: 0 0.25rem;
+    cursor: pointer;
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.3rem;
+    border: solid 1px #302b63;
+    color: #302b63;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+}
+.filter ul li.active {
+    background: #302b63;
+    color: #fff;
+    border-color: transparent;
+}
+.filter ul li:first-child {
+    margin-left: 0;
+}
+.filter ul li:last-child {
+    margin-right: 0;
+}
+
+@media (max-width: 440px) {
+    .filter {
+        display: block;
+    }
+    .filter input {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}

@@ -1,0 +1,93 @@
+.list-item {
+    position: relative;
+    transform: translate(-100px, 0);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+}
+.list-item.animate-in {
+    transform: translate(0, 0);
+    opacity: 1;
+}
+.list-item.animate-out {
+    transform: translate(100px, 0);
+    opacity: 0;
+}
+.list-item.filtered {
+    transform: translate(0, 0);
+    opacity: 1;
+    transition: none;
+}
+.list-item input {
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    padding-left: 50px;
+    padding-right: 80px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    height: 51px;
+    line-height: 51px;
+}
+.list-item:first-child input {
+    border-top: none;
+}
+.list-item button,
+.list-item .checkmark {
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 11px;
+}
+.list-item button {
+    display: none;
+}
+.list-item:hover button {
+    display: block;
+    border-radius: 0.3rem;
+}
+.list-item button i {
+    font-size: 1.2rem;
+    color: #302b63;
+}
+.list-item:hover button:hover {
+    background-color: #eee !important;
+}
+.list-item:hover button:active,
+.list-item:hover button:focus {
+    background-color: #ddd !important;
+}
+.list-item .btn-edit {
+    right: 36px;
+}
+.list-item .btn-delete {
+    right: 5px;
+}
+.list-item .checkmark {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    left: 11px;
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+.list-item.completed input {
+    color: #b0b0b0;
+    text-decoration: line-through;
+}
+.list-item.completed .checkmark {
+    border-color: #008080;
+}
+.list-item.completed .checkmark::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    width: 6px;
+    height: 12px;
+    border: solid #008080;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

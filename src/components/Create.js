@@ -9,10 +9,22 @@ function Create() {
     const { setTodoItems } = useContext(AppContext);
 
     function handleInputChange(event) {
-        setItem(event.currentTarget.value);
+        if (event.keyCode !== 13) {
+            setItem(event.currentTarget.value);
+        }
     }
 
-    function handleAddNewItem(event) {
+    function handleInputKeyDown(event) {
+        if (event.keyCode === 13) {
+            addNewItem();
+        }
+    }
+
+    function handleAddNewItem() {
+        addNewItem();
+    }
+
+    function addNewItem() {
         if (item.trim() !== "") {
             const theID = uniqueID();
             const newItem = {
@@ -35,9 +47,7 @@ function Create() {
         if (id.trim() !== "") {
             const $li = document.querySelector("#" + id);
             if ($li) {
-                setTimeout(() => {
-                    $li.classList.remove("filtered");
-                }, 1);
+                $li.classList.add("not-static");
                 $li.classList.add("animate-in");
                 setItem("");
                 document.querySelector(".create input").focus();
@@ -54,6 +64,7 @@ function Create() {
                     id="newItem"
                     value={item}
                     onChange={handleInputChange}
+                    onKeyDown={handleInputKeyDown}
                 />
                 <button
                     type="button"

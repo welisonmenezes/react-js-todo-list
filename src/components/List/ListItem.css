@@ -12,10 +12,19 @@
     transform: translate(100px, 0);
     opacity: 0;
 }
-.list-item.filtered {
+.list-item.static {
     transform: translate(0, 0);
     opacity: 1;
     transition: none;
+}
+.list-item.static.not-static {
+    transform: translate(-100px, 0);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+}
+.list-item.static.not-static.animate-in {
+    transform: translate(0, 0);
+    opacity: 1;
 }
 .list-item input {
     border-bottom: none;

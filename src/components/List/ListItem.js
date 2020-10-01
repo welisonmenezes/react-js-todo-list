@@ -62,12 +62,12 @@ function ListItem({ todoItem }) {
     }
 
     function removeFromUIWithAnimations($li) {
-        $li.classList.remove("filtered");
+        $li.classList.remove("static");
         $li.classList.add("animate-out");
     }
 
     useEffect(() => {
-        document.querySelector("#" + todoItem.id).classList.add("filtered");
+        document.querySelector("#" + todoItem.id).classList.add("static");
     }, [todoItems, todoItem]);
 
     return (

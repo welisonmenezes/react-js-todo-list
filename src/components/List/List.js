@@ -9,7 +9,7 @@ function List() {
     useEffect(() => {
         const $lis = document.querySelectorAll(".list li");
         $lis.forEach(($item, index) => {
-            $item.classList.remove("filtered");
+            $item.classList.remove("static");
             setTimeout(() => $item.classList.add("animate-in"), index * 100);
         });
     }, []);

@@ -26,6 +26,9 @@
     font-size: 0.65rem;
     text-transform: uppercase;
 }
+.filter ul li:hover {
+    background-color: #ccc;
+}
 .filter ul li.active {
     background: #302b63;
     color: #fff;

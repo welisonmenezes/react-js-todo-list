@@ -18,9 +18,14 @@
 }
 .create .btn-add i {
     font-size: 1.5rem;
+    transition: transform 0.5s;
 }
 .create .btn-add:hover {
     background-color: #105e5e !important;
+}
+.create .btn-add:focus i,
+.create .btn-add:hover i {
+    transform: rotate(90deg);
 }
 .create .btn-add:active,
 .create .btn-add:focus {

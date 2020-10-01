@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./ListItem.css";
 import { AppContext } from "../../contexts/AppContext";
 
@@ -29,7 +29,20 @@ function ListItem({ todoItem }) {
     }
 
     function handleInputBlur(event) {
-        event.currentTarget.setAttribute("readOnly", 1);
+        if (!event.currentTarget.hasAttribute('readOnly')){
+            const newTodoItems = todoItems.filter((item) => {
+                event.currentTarget.setAttribute("readOnly", 1);
+                if (item.title !== "") {
+                    return true;
+                } else {
+                    removeFromUIWithAnimations(event.currentTarget.parentElement);
+                    setTimeout(() => {
+                        setTodoItems(newTodoItems);
+                    }, 500);
+                    return false;
+                }
+            });
+        }
     }
 
     function handleEnableEditItem(event) {
@@ -39,20 +52,28 @@ function ListItem({ todoItem }) {
     }
 
     function handleDeleteItem(event, todoItem) {
-        const newTodoItems = todoItems.filter(item => {
-            return item.id !== todoItem.id
+        const newTodoItems = todoItems.filter((item) => {
+            return item.id !== todoItem.id;
         });
-        event.currentTarget.parentElement.classList.add("animate-out");
+        removeFromUIWithAnimations(event.currentTarget.parentElement);
         setTimeout(() => {
             setTodoItems(newTodoItems);
         }, 500);
     }
 
+    function removeFromUIWithAnimations($li) {
+        $li.classList.remove("filtered");
+        $li.classList.add("animate-out");
+    }
+
+    useEffect(() => {
+        document.querySelector("#" + todoItem.id).classList.add("filtered");
+    }, [todoItems, todoItem]);
+
     return (
         <li
-            className={`animate-in list-item  ${
-                todoItem.completed ? "completed" : ""
-            }`}
+            id={todoItem.id}
+            className={`list-item ${todoItem.completed ? "completed" : ""}`}
         >
             <span
                 className="checkmark"

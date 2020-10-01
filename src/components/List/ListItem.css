@@ -51,7 +51,8 @@
 .list-item button {
     display: none;
 }
-.list-item:hover button {
+.list-item:hover button,
+.list-item.active button {
     display: block;
     border-radius: 0.3rem;
 }

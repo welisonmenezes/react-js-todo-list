@@ -7,6 +7,16 @@ function ListItem({ todoItem }) {
     const { setTodoItems } = useContext(AppContext);
 
     function handleCheckItem(todoItem) {
+        checkTheTodoItem(todoItem);
+    }
+
+    function handleCheckItemByEnter(event, todoItem) {
+        if (event.keyCode === 13) {
+            checkTheTodoItem(todoItem);
+        }
+    }
+
+    function checkTheTodoItem(todoItem) {
         const newTodoItems = [...todoItems];
         newTodoItems.map((item) => {
             if (item.id === todoItem.id) {
@@ -15,6 +25,16 @@ function ListItem({ todoItem }) {
             return item;
         });
         setTodoItems(newTodoItems);
+    }
+
+    function handleCheckFocus(event) {
+        document.querySelectorAll('.list li').forEach(item => {
+            item.classList.remove('active');
+        });
+        const parent = event.currentTarget.parentElement;
+        setTimeout(() => {
+            parent.classList.add('active');
+        }, 100);
     }
 
     function handleInputChange(event, todoItem) {
@@ -81,6 +101,10 @@ function ListItem({ todoItem }) {
                 onClick={() => {
                     handleCheckItem(todoItem);
                 }}
+                onKeyDown={(event) => {
+                    handleCheckItemByEnter(event, todoItem);
+                }}
+                onFocus={handleCheckFocus}
             ></span>
             <input
                 type="text"

@@ -1,26 +1,13 @@
 import React from "react";
 import "./App.css";
-import Forkme from "./components/Forkme";
-import Header from "./components/Header";
-import Create from "./components/Create";
-import Status from "./components/Status";
-import List from "./components/List/List";
-import Empty from "./components/Empty";
-import Filter from "./components/Filter";
+import { AppProvider } from "./contexts/AppContext";
+import Root from "./components/Root";
 
 function App() {
     return (
-        <div className="root">
-            <Forkme />
-            <div className="todo-app">
-                <Header />
-                <Create />
-                <Status />
-                <List />
-                <Empty />
-                <Filter />
-            </div>
-        </div>
+        <AppProvider>
+            <Root />
+        </AppProvider>
     );
 }
 

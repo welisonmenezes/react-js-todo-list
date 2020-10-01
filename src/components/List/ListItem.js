@@ -5,7 +5,15 @@ function ListItem() {
     const [title] = useState("Todo Item");
 
     function handleInputChange(event) {
-        console.log(event);
+        console.log("ListItem Change Item", event);
+    }
+
+    function handleEditItem(event) {
+        console.log("ListItem Edit Item", event);
+    }
+
+    function handleDeleteItem(event) {
+        console.log("ListItem Delete Item", event);
     }
 
     return (
@@ -18,10 +26,14 @@ function ListItem() {
                 value={title}
                 onChange={handleInputChange}
             />
-            <button type="button" className="btn-edit">
+            <button type="button" className="btn-edit" onClick={handleEditItem}>
                 <i className="material-icons">edit</i>
             </button>
-            <button type="button" className="btn-delete">
+            <button
+                type="button"
+                className="btn-delete"
+                onClick={handleDeleteItem}
+            >
                 <i className="material-icons">delete</i>
             </button>
         </li>

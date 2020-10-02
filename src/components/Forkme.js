@@ -5,10 +5,10 @@ function Forkme() {
     return (
         <div className="forkme">
             <a
-                href="#https://github.com/welisonmenezes/"
+                href="https://welisonmenezes.github.io/react-js-todo-list/"
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Vanilla Js Todo List - Github Welison Menezes"
+                title="React Js Todo List - Github Welison Menezes"
             >
                 Fork me on GitHub
             </a>

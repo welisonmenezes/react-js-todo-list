@@ -17,26 +17,36 @@ function Root() {
     });
 
     function addEventsToAccessibility() {
-        document.querySelector('body').addEventListener('click', function(event) {
-            removeActiveClassFromItemUI(event);
-        });
-        document.querySelector('body').addEventListener('keyup', function(event) {
-            if (event.key === 'Tab') {
+        document
+            .querySelector("body")
+            .addEventListener("click", function (event) {
                 removeActiveClassFromItemUI(event);
-            }
-        });
+            });
+        document
+            .querySelector("body")
+            .addEventListener("keyup", function (event) {
+                if (event.key === "Tab") {
+                    removeActiveClassFromItemUI(event);
+                }
+            });
     }
 
     function removeActiveClassFromItemUI(event) {
         if (event.target.parentElement) {
-            if(event.target.parentElement.classList.contains('list-item')) return;
+            if (event.target.parentElement.classList.contains("list-item"))
+                return;
             if (event.target.parentElement.parentElement) {
-                if(event.target.parentElement.parentElement.classList.contains('list-item')) return;
+                if (
+                    event.target.parentElement.parentElement.classList.contains(
+                        "list-item"
+                    )
+                )
+                    return;
             }
         }
-        if (document.querySelector('.list li.active')) {
-            document.querySelectorAll('.list li').forEach(item => {
-                item.classList.remove('active');
+        if (document.querySelector(".list li.active")) {
+            document.querySelectorAll(".list li").forEach((item) => {
+                item.classList.remove("active");
             });
         }
     }

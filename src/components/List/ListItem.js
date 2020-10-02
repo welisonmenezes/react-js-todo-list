@@ -1,10 +1,19 @@
 import React, { useContext, useEffect } from "react";
+import { useSpring, animated } from "react-spring";
 import "./ListItem.css";
 import { AppContext } from "../../contexts/AppContext";
 
 function ListItem({ todoItem }) {
     const { todoItems } = useContext(AppContext);
     const { setTodoItems } = useContext(AppContext);
+    const { isAdding, setIsAdding } = useContext(AppContext);
+    const props = useSpring({
+        from: {
+            opacity: isAdding ? 0 : 1,
+            transform: isAdding ? "translate(-100px, 0)" : "translate(0, 0)",
+        },
+        to: { opacity: 1, transform: "translate(0, 0)" },
+    });
 
     function handleCheckItem(todoItem) {
         checkTheTodoItem(todoItem);
@@ -28,12 +37,12 @@ function ListItem({ todoItem }) {
     }
 
     function handleCheckFocus(event) {
-        document.querySelectorAll('.list li').forEach(item => {
-            item.classList.remove('active');
+        document.querySelectorAll(".list li").forEach((item) => {
+            item.classList.remove("active");
         });
         const parent = event.currentTarget.parentElement;
         setTimeout(() => {
-            parent.classList.add('active');
+            parent.classList.add("active");
         }, 100);
     }
 
@@ -49,13 +58,15 @@ function ListItem({ todoItem }) {
     }
 
     function handleInputBlur(event) {
-        if (!event.currentTarget.hasAttribute('readOnly')){
+        if (!event.currentTarget.hasAttribute("readOnly")) {
             const newTodoItems = todoItems.filter((item) => {
                 event.currentTarget.setAttribute("readOnly", 1);
                 if (item.title !== "") {
                     return true;
                 } else {
-                    removeFromUIWithAnimations(event.currentTarget.parentElement);
+                    removeFromUIWithAnimations(
+                        event.currentTarget.parentElement
+                    );
                     setTimeout(() => {
                         setTodoItems(newTodoItems);
                     }, 500);
@@ -82,16 +93,17 @@ function ListItem({ todoItem }) {
     }
 
     function removeFromUIWithAnimations($li) {
-        $li.classList.remove("static");
+        $li.classList.add("not-static");
         $li.classList.add("animate-out");
     }
 
     useEffect(() => {
-        document.querySelector("#" + todoItem.id).classList.add("static");
-    }, [todoItems, todoItem]);
+        setIsAdding(false);
+    }, [setIsAdding]);
 
     return (
-        <li
+        <animated.li
+            style={props}
             id={todoItem.id}
             className={`list-item ${todoItem.completed ? "completed" : ""}`}
         >
@@ -132,7 +144,7 @@ function ListItem({ todoItem }) {
             >
                 <i className="material-icons">delete</i>
             </button>
-        </li>
+        </animated.li>
     );
 }
 

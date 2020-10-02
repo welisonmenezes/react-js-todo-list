@@ -20,22 +20,49 @@ export const AppProvider = (props) => {
             completed: false,
         },
     ]);
+    const [todoItemsFiltered, setTodoItemsFiltered] = useState(todoItems);
     const [filterStatus, setFilterStatus] = useState("");
     const [filterQuery, setFilterQuery] = useState("");
+    const [key, setKey] = useState("all");
+    const [query, setQuery] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+    const [isAdding, setIsAdding] = useState(true);
 
     useEffect(() => {
-        console.log(todoItems)
-    }, [todoItems]);
+        let newItems = todoItems.filter((item) => {
+            if (key === "active") return !item.completed;
+            if (key === "completed") return item.completed;
+            return true;
+        });
+
+        if (query !== "") {
+            newItems = newItems.filter((item) => {
+                return item.title.toLowerCase().includes(query);
+            });
+        }
+
+        setTodoItemsFiltered(newItems);
+    }, [key, setTodoItemsFiltered, todoItems, query]);
 
     return (
         <AppContext.Provider
             value={{
                 todoItems,
                 setTodoItems,
+                todoItemsFiltered,
+                setTodoItemsFiltered,
                 filterStatus,
                 setFilterStatus,
                 filterQuery,
                 setFilterQuery,
+                key,
+                setKey,
+                query,
+                setQuery,
+                isLoading,
+                setIsLoading,
+                isAdding,
+                setIsAdding,
             }}
         >
             {props.children}

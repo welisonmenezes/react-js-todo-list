@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Filter.css";
+import { AppContext } from "../contexts/AppContext";
 
 function Filter() {
+    const { key, setKey } = useContext(AppContext);
+    const { query, setQuery } = useContext(AppContext);
+    const { setIsAdding } = useContext(AppContext);
+
     function handleFilterChange(event) {
-        console.log("Filter Status", event);
+        setKey(event.currentTarget.getAttribute("data-status"));
+        setIsAdding(false);
     }
 
     function handleInputChange(event) {
-        console.log("Filter Query", event);
+        setQuery(event.currentTarget.value);
+        setIsAdding(false);
     }
 
     return (
@@ -15,11 +22,12 @@ function Filter() {
             <input
                 type="text"
                 placeholder="Search Todo..."
+                value={query}
                 onChange={handleInputChange}
             />
             <ul>
                 <li
-                    className="active"
+                    className={`${key === "all" ? "active" : ""}`}
                     tabIndex="0"
                     data-status="all"
                     onClick={handleFilterChange}
@@ -27,6 +35,7 @@ function Filter() {
                     All
                 </li>
                 <li
+                    className={`${key === "active" ? "active" : ""}`}
                     tabIndex="0"
                     data-status="active"
                     onClick={handleFilterChange}
@@ -34,6 +43,7 @@ function Filter() {
                     Active
                 </li>
                 <li
+                    className={`${key === "completed" ? "active" : ""}`}
                     tabIndex="0"
                     data-status="completed"
                     onClick={handleFilterChange}

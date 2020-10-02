@@ -7,6 +7,7 @@ function Create() {
     const [id, setId] = useState("");
     const { todoItems } = useContext(AppContext);
     const { setTodoItems } = useContext(AppContext);
+    const { setIsAdding } = useContext(AppContext);
 
     function handleInputChange(event) {
         if (event.keyCode !== 13) {
@@ -31,11 +32,13 @@ function Create() {
                 id: theID,
                 title: item,
                 completed: false,
+                test: true,
             };
             const newTodoItems = [...todoItems];
             newTodoItems.unshift(newItem);
             setTodoItems(newTodoItems);
             setId(theID);
+            setIsAdding(true);
         }
     }
 
@@ -44,15 +47,19 @@ function Create() {
     }
 
     useEffect(() => {
-        if (id.trim() !== "") {
-            const $li = document.querySelector("#" + id);
-            if ($li) {
-                $li.classList.add("not-static");
-                $li.classList.add("animate-in");
-                setItem("");
-                document.querySelector(".create input").focus();
-            }
-        }
+        // if (id.trim() !== "") {
+        //     setTimeout(() => {
+        //         const $li = document.querySelector("#" + id);
+        //         if ($li) {
+        //             $li.classList.add("not-static");
+        //             $li.classList.add("animate-in");
+        //         }
+        //         setItem("");
+        //         document.querySelector(".create input").focus();
+        //     }, 10);
+        // }
+        setItem("");
+        document.querySelector(".create input").focus();
     }, [id]);
 
     return (

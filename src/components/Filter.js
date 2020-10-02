@@ -3,17 +3,24 @@ import "./Filter.css";
 import { AppContext } from "../contexts/AppContext";
 
 function Filter() {
-    const { key, setKey } = useContext(AppContext);
-    const { query, setQuery } = useContext(AppContext);
+    const { filterStatus, setFilterStatus } = useContext(AppContext);
+    const { filterQuery, setFilterQuery } = useContext(AppContext);
     const { setIsAdding } = useContext(AppContext);
 
     function handleFilterChange(event) {
-        setKey(event.currentTarget.getAttribute("data-status"));
+        setFilterStatus(event.currentTarget.getAttribute("data-status"));
         setIsAdding(false);
     }
 
+    function handleFilterByEnter(event) {
+        if (event.keyCode === 13) {
+            setFilterStatus(event.currentTarget.getAttribute("data-status"));
+            setIsAdding(false);
+        }
+    }
+
     function handleInputChange(event) {
-        setQuery(event.currentTarget.value);
+        setFilterQuery(event.currentTarget.value);
         setIsAdding(false);
     }
 
@@ -22,31 +29,40 @@ function Filter() {
             <input
                 type="text"
                 placeholder="Search Todo..."
-                value={query}
+                value={filterQuery}
                 onChange={handleInputChange}
             />
             <ul>
                 <li
-                    className={`${key === "all" ? "active" : ""}`}
+                    className={`${filterStatus === "all" ? "active" : ""}`}
                     tabIndex="0"
                     data-status="all"
                     onClick={handleFilterChange}
+                    onKeyDown={(event) => {
+                        handleFilterByEnter(event);
+                    }}
                 >
                     All
                 </li>
                 <li
-                    className={`${key === "active" ? "active" : ""}`}
+                    className={`${filterStatus === "active" ? "active" : ""}`}
                     tabIndex="0"
                     data-status="active"
                     onClick={handleFilterChange}
+                    onKeyDown={(event) => {
+                        handleFilterByEnter(event);
+                    }}
                 >
                     Active
                 </li>
                 <li
-                    className={`${key === "completed" ? "active" : ""}`}
+                    className={`${filterStatus === "completed" ? "active" : ""}`}
                     tabIndex="0"
                     data-status="completed"
                     onClick={handleFilterChange}
+                    onKeyDown={(event) => {
+                        handleFilterByEnter(event);
+                    }}
                 >
                     Completed
                 </li>

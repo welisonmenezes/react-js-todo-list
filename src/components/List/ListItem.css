@@ -9,7 +9,6 @@
     opacity: 0 !important;
 }
 .list-item input {
-    border-bottom: none;
     border-left: none;
     border-right: none;
     padding-left: 50px;
@@ -19,8 +18,8 @@
     height: 51px;
     line-height: 51px;
 }
-.list-item:first-child input {
-    border-top: none;
+.list-item:last-child input {
+    border-bottom: none;
 }
 .list-item button,
 .list-item .checkmark {

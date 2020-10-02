@@ -32,7 +32,6 @@ function Create() {
                 id: theID,
                 title: item,
                 completed: false,
-                test: true,
             };
             const newTodoItems = [...todoItems];
             newTodoItems.unshift(newItem);
@@ -47,17 +46,6 @@ function Create() {
     }
 
     useEffect(() => {
-        // if (id.trim() !== "") {
-        //     setTimeout(() => {
-        //         const $li = document.querySelector("#" + id);
-        //         if ($li) {
-        //             $li.classList.add("not-static");
-        //             $li.classList.add("animate-in");
-        //         }
-        //         setItem("");
-        //         document.querySelector(".create input").focus();
-        //     }, 10);
-        // }
         setItem("");
         document.querySelector(".create input").focus();
     }, [id]);

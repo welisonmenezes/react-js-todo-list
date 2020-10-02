@@ -6,6 +6,7 @@ import { useTrail, animated } from "react-spring";
 
 function List() {
     const { todoItemsFiltered } = useContext(AppContext);
+    const { todoItems } = useContext(AppContext);
     const { isLoading, setIsLoading } = useContext(AppContext);
     const trailSprings = useTrail(todoItemsFiltered.length, {
         from: {
@@ -16,8 +17,12 @@ function List() {
     });
 
     useEffect(() => {
-        setIsLoading(false);
-    }, [setIsLoading]);
+        if (todoItems.length > 0 && isLoading) {
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 10);
+        }
+    }, [setIsLoading, todoItems, isLoading]);
 
     return (
         <div className="list">

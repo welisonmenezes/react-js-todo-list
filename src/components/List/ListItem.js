@@ -7,10 +7,11 @@ function ListItem({ todoItem }) {
     const { todoItems } = useContext(AppContext);
     const { setTodoItems } = useContext(AppContext);
     const { isAdding, setIsAdding } = useContext(AppContext);
-    const props = useSpring({
+    const { isLoading } = useContext(AppContext);
+    const animation = useSpring({
         from: {
-            opacity: isAdding ? 0 : 1,
-            transform: isAdding ? "translate(-100px, 0)" : "translate(0, 0)",
+            opacity: isAdding && !isLoading ? 0 : 1,
+            transform: isAdding && !isLoading ? "translate(-100px, 0)" : "translate(0, 0)",
         },
         to: { opacity: 1, transform: "translate(0, 0)" },
     });
@@ -67,6 +68,7 @@ function ListItem({ todoItem }) {
                     removeFromUIWithAnimations(
                         event.currentTarget.parentElement
                     );
+                    // delay to animation
                     setTimeout(() => {
                         setTodoItems(newTodoItems);
                     }, 500);
@@ -87,6 +89,7 @@ function ListItem({ todoItem }) {
             return item.id !== todoItem.id;
         });
         removeFromUIWithAnimations(event.currentTarget.parentElement);
+        // delay to animation
         setTimeout(() => {
             setTodoItems(newTodoItems);
         }, 500);
@@ -103,7 +106,7 @@ function ListItem({ todoItem }) {
 
     return (
         <animated.li
-            style={props}
+            style={animation}
             id={todoItem.id}
             className={`list-item ${todoItem.completed ? "completed" : ""}`}
         >

@@ -5,7 +5,7 @@ function Forkme() {
     return (
         <div className="forkme">
             <a
-                href="https://welisonmenezes.github.io/react-js-todo-list/"
+                href="https://github.com/welisonmenezes/react-js-todo-list"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="React Js Todo List - Github Welison Menezes"

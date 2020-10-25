@@ -1,4 +1,4 @@
-# Vanilla JS Todo List
+# React JS Todo List
 
 A Todo List App created using React Js and Context API.
 
